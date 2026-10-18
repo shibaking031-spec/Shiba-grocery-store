@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#173f35" />
+  <meta name="description" content="SHIBA GROCERY STORE — Balibil, Jagannath Chhaka ke paas. Rozmarra ka grocery samaan, masale aur zaroori products." />
+  <title>SHIBA GROCERY STORE | Aapki Apni Local Dukaan</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN (for a simple single-file setup) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#173f35',
+            leaf: '#2f765b',
+            cream: '#fbf7ee',
+            gold: '#e6b85c',
+            ink: '#202b26'
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+            display: ['Playfair Display', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root { --forest:#173f35; --leaf:#2f765b; --cream:#fbf7ee; --gold:#e6b85c; --ink:#202b26; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; font-family:'DM Sans',sans-serif; color:var(--ink); background:#fff; }
+    .font-display { font-family:'Playfair Display',serif; }
+    .hero-bg {
+      background:
+        radial-gradient(circle at 85% 20%, rgba(230,184,92,.22), transparent 24rem),
+        linear-gradient(120deg, rgba(23,63,53,.98), rgba(23,63,53,.88)),
+        var(--forest);
+    }
+    .grain { background-image: radial-gradient(rgba(255,255,255,.09) .7px, transparent .7px); background-size: 8px 8px; }
+    .section-kicker { letter-spacing:.16em; text-transform:uppercase; font-size:.75rem; font-weight:800; color:var(--leaf); }
+    .product-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .product-card:hover { transform:translateY(-5px); box-shadow:0 18px 38px rgba(23,63,53,.10); }
+    .icon-tile { display:grid; place-items:center; width:3.25rem; height:3.25rem; border-radius:1rem; background:#edf4ed; color:var(--leaf); font-size:1.25rem; }
+    .focus-ring:focus { outline:3px solid rgba(230,184,92,.75); outline-offset:3px; }
+    .mobile-menu { display:none; }
+    .mobile-menu.open { display:block; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none !important; animation:none !important; } }
+  </style>
+</head>
+
+<body>
+  <!-- Top information strip -->
+  <div class="bg-[#102f28] text-white text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex flex-col sm:flex-row gap-2 sm:gap-5 items-center justify-center sm:justify-between">
+      <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-gold"></i> Balibil, Jagannath Chhaka ke paas</p>
+      <a class="hover:text-gold transition" href="tel:+918658050804"><i class="fa-solid fa-phone mr-2 text-gold"></i>+91 86580 50804</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[#e9eee8]">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 focus-ring rounded-lg" aria-label="SHIBA GROCERY STORE home">
+        <span class="w-11 h-11 rounded-2xl bg-forest text-gold grid place-items-center text-xl"><i class="fa-solid fa-basket-shopping"></i></span>
+        <span>
+          <span class="block font-extrabold tracking-wide text-forest leading-tight">SHIBA GROCERY STORE</span>
+          <span class="block text-xs text-gray-500 mt-1">Aapki apni local dukaan</span>
+        </span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm font-semibold text-gray-700">
+        <a class="hover:text-leaf" href="#home">Home</a>
+        <a class="hover:text-leaf" href="#about">Hamare baare mein</a>
+        <a class="hover:text-leaf" href="#products">Products</a>
+        <a class="hover:text-leaf" href="#booking">Booking</a>
+        <a class="hover:text-leaf" href="#contact">Contact</a>
+      </div>
+      <a href="https://wa.me/918658050804" target="_blank" rel="noopener" class="hidden md:inline-flex items-center gap-2 rounded-full bg-leaf px-5 py-3 text-white font-bold text-sm hover:bg-forest transition">
+        <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp karein
+      </a>
+      <button id="menuToggle" class="md:hidden w-11 h-11 rounded-xl border border-gray-200 text-forest text-xl focus-ring" aria-label="Menu kholen" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+    <div id="mobileMenu" class="mobile-menu md:hidden border-t border-gray-100 bg-white px-5 py-4">
+      <div class="flex flex-col gap-4 font-semibold text-gray-700">
+        <a href="#home" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">Hamare baare mein</a>
+        <a href="#products" class="mobile-link">Products</a>
+        <a href="#booking" class="mobile-link">Booking</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+        <a href="https://wa.me/918658050804" target="_blank" rel="noopener" class="text-leaf"><i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp karein</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero-bg grain relative overflow-hidden text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20 md:py-28 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="relative z-10">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-[#f7d98d]">
+            <i class="fa-solid fa-leaf"></i> Roz ki zaroorat, ek hi jagah
+          </span>
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] mt-6">Ghar ki zarooraton ka <span class="text-[#f2ca70]">bharosemand</span> saathi.</h1>
+          <p class="text-white/80 text-lg leading-8 mt-6 max-w-xl">Namak, tel, masale aur rozmarra ke zaroori products ke liye aaiye SHIBA GROCERY STORE. Aapka apna local store, Balibil mein.</p>
+          <div class="flex flex-col sm:flex-row gap-3 mt-8">
+            <a href="#products" class="focus-ring inline-flex justify-center items-center gap-2 rounded-full bg-gold text-forest px-7 py-4 font-extrabold hover:bg-[#f3cb73] transition">Products dekhein <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="https://wa.me/918658050804?text=Namaste%20SHIBA%20GROCERY%20STORE%2C%20mujhe%20products%20ke%20baare%20mein%20jaankari%20chahiye." target="_blank" rel="noopener" class="focus-ring inline-flex justify-center items-center gap-2 rounded-full border border-white/35 px-7 py-4 font-bold hover:bg-white/10 transition"><i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp par poochhein</a>
+          </div>
+          <div class="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/80">
+            <span><i class="fa-solid fa-check text-gold mr-2"></i>Rozmarra ke essentials</span>
+            <span><i class="fa-solid fa-check text-gold mr-2"></i>Seedha sampark</span>
+            <span><i class="fa-solid fa-check text-gold mr-2"></i>Local convenience</span>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -inset-4 rounded-[2rem] border border-white/15 rotate-3"></div>
+          <div class="relative rounded-[2rem] bg-[#f8f2e5] p-6 sm:p-8 text-forest shadow-2xl">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold tracking-[.18em] uppercase text-leaf">Store highlights</span>
+              <span class="w-12 h-12 rounded-2xl bg-gold grid place-items-center text-xl"><i class="fa-solid fa-basket-shopping"></i></span>
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Daily needs, made simple.</h2>
+            <p class="text-gray-600 mt-3 leading-7">Kitchen essentials se lekar masalon tak — apni shopping list ke saath humse sampark karein.</p>
+            <div class="grid grid-cols-2 gap-3 mt-7">
+              <div class="rounded-2xl bg-white p-4"><i class="fa-solid fa-bottle-droplet text-2xl text-leaf"></i><p class="font-bold mt-3">Cooking Oils</p><p class="text-sm text-gray-500 mt-1">Mustard oil aur tel</p></div>
+              <div class="rounded-2xl bg-white p-4"><i class="fa-solid fa-pepper-hot text-2xl text-leaf"></i><p class="font-bold mt-3">Masale</p><p class="text-sm text-gray-500 mt-1">Lal mirch, jeera</p></div>
+              <div class="rounded-2xl bg-white p-4"><i class="fa-solid fa-box-open text-2xl text-leaf"></i><p class="font-bold mt-3">Daily Essentials</p><p class="text-sm text-gray-500 mt-1">Namak aur zaroori samaan</p></div>
+              <div class="rounded-2xl bg-white p-4"><i class="fa-solid fa-glass-water text-2xl text-leaf"></i><p class="font-bold mt-3">Cold Drinks</p><p class="text-sm text-gray-500 mt-1">Sprite aur drinks</p></div>
+            </div>
+            <a href="#booking" class="mt-6 w-full rounded-xl bg-forest text-white py-4 px-5 flex items-center justify-between font-bold hover:bg-leaf transition">Free request / booking <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="absolute -bottom-20 -left-16 w-64 h-64 rounded-full border border-white/10"></div>
+    </section>
+
+    <!-- Trust strip -->
+    <section class="bg-cream border-b border-[#efe8d9]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div class="flex items-center gap-3"><span class="icon-tile"><i class="fa-solid fa-basket-shopping"></i></span><div><p class="font-bold">Rozmarra ka samaan</p><p class="text-sm text-gray-500">Daily-use products</p></div></div>
+        <div class="flex items-center gap-3"><span class="icon-tile"><i class="fa-solid fa-comments"></i></span><div><p class="font-bold">Aasaan sampark</p><p class="text-sm text-gray-500">Call ya WhatsApp karein</p></div></div>
+        <div class="flex items-center gap-3"><span class="icon-tile"><i class="fa-solid fa-location-dot"></i></span><div><p class="font-bold">Local convenience</p><p class="text-sm text-gray-500">Balibil, Jagannath Chhaka ke paas</p></div></div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="rounded-[2rem] bg-cream p-8 sm:p-12 relative overflow-hidden">
+          <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full border-[22px] border-[#e7dcc4]/60"></div>
+          <div class="relative">
+            <span class="w-16 h-16 rounded-2xl bg-forest text-gold grid place-items-center text-3xl"><i class="fa-solid fa-store"></i></span>
+            <p class="font-display text-3xl sm:text-4xl text-forest font-bold mt-7">Aapke aas-paas ki dukaan, aapki zaroorat ke liye.</p>
+            <p class="text-gray-600 leading-7 mt-4">Humara maqsad hai ki aapko roz ki zaroorat ka samaan aasani se mil sake. Product availability aur price confirm karne ke liye humein call ya WhatsApp karein.</p>
+            <div class="mt-7 inline-flex items-center gap-3 bg-white rounded-full py-3 px-5 shadow-sm"><i class="fa-solid fa-location-dot text-leaf"></i><span class="font-bold">Balibil • Jagannath Chhaka ke paas</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="section-kicker">Hamare baare mein</p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-forest mt-4 leading-tight">Chhoti shopping ko banayein aur bhi aasaan.</h2>
+          <p class="text-gray-600 leading-8 mt-6">SHIBA GROCERY STORE mein aap namak, cooking oil, mustard oil, masale aur cold drinks jaise products ke baare mein pooch sakte hain. Humein apni list bhejein — hum availability aur details confirm karne mein madad karenge.</p>
+          <div class="mt-8 space-y-5">
+            <div class="flex gap-4"><span class="w-8 h-8 shrink-0 rounded-full bg-[#eaf2e9] text-leaf grid place-items-center"><i class="fa-solid fa-check"></i></span><div><h3 class="font-bold text-lg">Seedha aur aasaan sampark</h3><p class="text-gray-500 mt-1">Phone aur WhatsApp se apna sawaal bhejein.</p></div></div>
+            <div class="flex gap-4"><span class="w-8 h-8 shrink-0 rounded-full bg-[#eaf2e9] text-leaf grid place-items-center"><i class="fa-solid fa-check"></i></span><div><h3 class="font-bold text-lg">Product inquiry aur request</h3><p class="text-gray-500 mt-1">Jo samaan chahiye uski list humein bata dein.</p></div></div>
+            <div class="flex gap-4"><span class="w-8 h-8 shrink-0 rounded-full bg-[#eaf2e9] text-leaf grid place-items-center"><i class="fa-solid fa-check"></i></span><div><h3 class="font-bold text-lg">Local store support</h3><p class="text-gray-500 mt-1">Store par aane se pehle details confirm kar sakte hain.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products / Services -->
+    <section id="products" class="bg-cream py-20 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-2xl mx-auto text-center">
+          <p class="section-kicker">Products & services</p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-forest font-bold mt-4">Aapki daily list ke favourites</h2>
+          <p class="text-gray-600 leading-7 mt-4">Neeche diye gaye products ke liye availability aur price poochhein. Stock aur rates badal sakte hain.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+          <article class="product-card rounded-3xl bg-white p-6 border border-[#eee8db]">
+            <div class="icon-tile"><i class="fa-solid fa-cubes-stacked"></i></div><h3 class="font-display text-2xl font-bold text-forest mt-5">Namak (Salt)</h3><p class="text-gray-500 leading-6 mt-2">Roz ke khane ka zaroori ingredient.</p><a href="#contact" class="inline-flex items-center gap-2 text-leaf font-bold mt-5">Availability poochhein <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+          <article class="product-card rounded-3xl bg-white p-6 border border-[#eee8db]">
+            <div class="icon-tile"><i class="fa-solid fa-bottle-droplet"></i></div><h3 class="font-display text-2xl font-bold text-forest mt-5">Cooking Oil</h3><p class="text-gray-500 leading-6 mt-2">Cooking oil aur mustard oil ke liye inquiry karein.</p><a href="#contact" class="inline-flex items-center gap-2 text-leaf font-bold mt-5">Availability poochhein <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+          <article class="product-card rounded-3xl bg-white p-6 border border-[#eee8db]">
+            <div class="icon-tile"><i class="fa-solid fa-pepper-hot"></i></div><h3 class="font-display text-2xl font-bold text-forest mt-5">Red Chili Powder</h3><p class="text-gray-500 leading-6 mt-2">Khana banane ke liye lal mirch powder.</p><a href="#contact" class="inline-flex items-center gap-2 text-leaf font-bold mt-5">Availability poochhein <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+          <article class="product-card rounded-3xl bg-white p-6 border border-[#eee8db]">
+            <div class="icon-tile"><i class="fa-solid fa-seedling"></i></div><h3 class="font-display text-2xl font-bold text-forest mt-5">Cumin (Jeera)</h3><p class="text-gray-500 leading-6 mt-2">Kitchen ke masalon mein ek zaroori naam.</p><a href="#contact" class="inline-flex items-center gap-2 text-leaf font-bold mt-5">Availability poochhein <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+          <article class="product-card rounded-3xl bg-white p-6 border border-[#eee8db]">
+            <div class="icon-tile"><i class="fa-solid fa-glass-water"></i></div><h3 class="font-display text-2xl font-bold text-forest mt-5">Sprite</h3><p class="text-gray-500 leading-6 mt-2">Cold drink ke liye store se poochhein.</p><a href="#contact" class="inline-flex items-center gap-2 text-leaf font-bold mt-5">Availability poochhein <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+          <article class="product-card rounded-3xl bg-white p-6 border border-[#eee8db]">
+            <div class="icon-tile"><i class="fa-solid fa-basket-shopping"></i></div><h3 class="font-display text-2xl font-bold text-forest mt-5">Grocery Essentials</h3><p class="text-gray-500 leading-6 mt-2">Apni zaroorat ki list bhejein aur poochhein.</p><a href="#contact" class="inline-flex items-center gap-2 text-leaf font-bold mt-5">List bhejein <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+          <article class="product-card rounded-3xl bg-white p-6 border border-[#eee8db]">
+            <div class="icon-tile"><i class="fa-solid fa-phone-volume"></i></div><h3 class="font-display text-2xl font-bold text-forest mt-5">Product Inquiry</h3><p class="text-gray-500 leading-6 mt-2">Price, pack size aur stock ke baare mein poochhein.</p><a href="tel:+918658050804" class="inline-flex items-center gap-2 text-leaf font-bold mt-5">Call karein <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+          <article class="product-card rounded-3xl bg-white p-6 border border-[#eee8db]">
+            <div class="icon-tile"><i class="fa-brands fa-whatsapp"></i></div><h3 class="font-display text-2xl font-bold text-forest mt-5">Request / Booking</h3><p class="text-gray-500 leading-6 mt-2">Apni shopping request ya visit ka samay bhejein.</p><a href="#booking" class="inline-flex items-center gap-2 text-leaf font-bold mt-5">Request karein <i class="fa-solid fa-arrow-right"></i></a>
+          </article>
+        </div>
+        <p class="text-sm text-gray-500 text-center mt-8"><i class="fa-solid fa-circle-info mr-1"></i> Petrol jaise regulated products ki sale aur supply lagu local kanoon aur licence requirements ke adheen hoti hai. Availability ko pehle confirm karein.</p>
+      </div>
+    </section>
+
+    <!-- Free booking/request form -->
+    <section id="booking" class="py-20 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="section-kicker">Free booking / request</p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-forest font-bold mt-4 leading-tight">Apni shopping request pehle bhej dein.</h2>
+          <p class="text-gray-600 leading-8 mt-5">Is free request form se aap apni product list aur pasand ka samay bhej sakte hain. Yeh request hai — booking tabhi confirm hogi jab store aapse sampark karke confirm karega.</p>
+          <div class="mt-8 space-y-4">
+            <div class="flex gap-3 items-start"><span class="text-leaf mt-1"><i class="fa-solid fa-circle-check text-xl"></i></span><p><strong>Free to use</strong><br><span class="text-gray-500">Koi online booking fee nahi.</span></p></div>
+            <div class="flex gap-3 items-start"><span class="text-leaf mt-1"><i class="fa-solid fa-circle-check text-xl"></i></span><p><strong>Quick follow-up</strong><br><span class="text-gray-500">Hum aapki request ke baare mein sampark kar sakte hain.</span></p></div>
+            <div class="flex gap-3 items-start"><span class="text-leaf mt-1"><i class="fa-solid fa-circle-check text-xl"></i></span><p><strong>WhatsApp alternative</strong><br><span class="text-gray-500">Chahein to seedha WhatsApp par list bhejein.</span></p></div>
+          </div>
+        </div>
+        <form id="bookingForm" class="rounded-[2rem] bg-cream border border-[#eee8db] p-6 sm:p-8 space-y-5">
+          <div><label for="bookName" class="block font-bold text-sm mb-2">Aapka naam *</label><input id="bookName" name="name" required class="focus-ring w-full rounded-xl border border-gray-200 bg-white px-4 py-3 outline-none" placeholder="Apna naam likhein" /></div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div><label for="bookPhone" class="block font-bold text-sm mb-2">Phone number *</label><input id="bookPhone" name="phone" required type="tel" pattern="[0-9+\-\s]{8,16}" class="focus-ring w-full rounded-xl border border-gray-200 bg-white px-4 py-3 outline-none" placeholder="Mobile number" /></div>
+            <div><label for="bookDate" class="block font-bold text-sm mb-2">Pasand ki date</label><input id="bookDate" name="preferred_date" type="date" class="focus-ring w-full rounded-xl border border-gray-200 bg-white px-4 py-3 outline-none" /></div>
+          </div>
+          <div><label for="bookItems" class="block font-bold text-sm mb-2">Products / request *</label><textarea id="bookItems" name="items" required rows="3" class="focus-ring w-full rounded-xl border border-gray-200 bg-white px-4 py-3 outline-none" placeholder="Jaise: namak 2 packet, mustard oil..."></textarea></div>
+          <div><label for="bookTime" class="block font-bold text-sm mb-2">Pasand ka samay (optional)</label><select id="bookTime" name="preferred_time" class="focus-ring w-full rounded-xl border border-gray-200 bg-white px-4 py-3 outline-none"><option value="">Samay select karein</option><option>Subah</option><option>Dupahar</option><option>Shaam</option><option>Store se confirm karna hai</option></select></div>
+          <button type="submit" class="w-full rounded-xl bg-forest text-white py-4 font-extrabold hover:bg-leaf transition"><i class="fa-brands fa-whatsapp mr-2 text-lg"></i> WhatsApp par request bhejein</button>
+          <p id="bookingStatus" class="text-sm text-gray-600" role="status" aria-live="polite">Button dabane par aapki request WhatsApp mein khulegi. Send karna aapko confirm karna hoga.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="bg-forest text-white py-20 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid lg:grid-cols-2 gap-12">
+          <div>
+            <p class="text-[#f2ca70] section-kicker">Contact us</p>
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4">Koi sawaal hai? Baat karein.</h2>
+            <p class="text-white/75 leading-8 mt-5 max-w-lg">Product availability, price ya kisi bhi request ke liye humein message bhejein. Hum aapse sampark karenge.</p>
+            <div class="mt-9 space-y-5">
+              <a href="tel:+918658050804" class="flex gap-4 items-center group"><span class="w-12 h-12 rounded-2xl bg-white/10 text-[#f2ca70] grid place-items-center text-xl"><i class="fa-solid fa-phone"></i></span><span><span class="block text-sm text-white/60">Phone</span><span class="font-bold group-hover:text-[#f2ca70]">+91 86580 50804</span></span></a>
+              <a href="https://wa.me/918658050804" target="_blank" rel="noopener" class="flex gap-4 items-center group"><span class="w-12 h-12 rounded-2xl bg-white/10 text-[#f2ca70] grid place-items-center text-2xl"><i class="fa-brands fa-whatsapp"></i></span><span><span class="block text-sm text-white/60">WhatsApp</span><span class="font-bold group-hover:text-[#f2ca70]">Message bhejein</span></span></a>
+              <a href="mailto:shibaking031@gmail.com" class="flex gap-4 items-center group"><span class="w-12 h-12 rounded-2xl bg-white/10 text-[#f2ca70] grid place-items-center text-xl"><i class="fa-solid fa-envelope"></i></span><span><span class="block text-sm text-white/60">Email</span><span class="font-bold group-hover:text-[#f2ca70]">shibaking031@gmail.com</span></span></a>
+              <div class="flex gap-4 items-center"><span class="w-12 h-12 rounded-2xl bg-white/10 text-[#f2ca70] grid place-items-center text-xl"><i class="fa-solid fa-location-dot"></i></span><span><span class="block text-sm text-white/60">Address</span><span class="font-bold">Balibil, near Jagannath Chhaka</span></span></div>
+            </div>
+          </div>
+          <div class="rounded-[2rem] bg-white text-ink p-6 sm:p-8">
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-forest">Humein message bhejein</h3>
+            <p class="text-gray-500 mt-2 mb-6">Form submit karne par aapka message email ke zariye bhejne ki koshish hogi.</p>
+            <form id="contactForm" class="space-y-4">
+              <div><label for="contactName" class="block font-bold text-sm mb-2">Naam *</label><input id="contactName" name="name" required class="focus-ring w-full rounded-xl border border-gray-200 px-4 py-3 outline-none" placeholder="Aapka naam" /></div>
+              <div><label for="contactEmail" class="block font-bold text-sm mb-2">Email *</label><input id="contactEmail" name="email" type="email" required class="focus-ring w-full rounded-xl border border-gray-200 px-4 py-3 outline-none" placeholder="you@example.com" /></div>
+              <div><label for="contactPhone" class="block font-bold text-sm mb-2">Phone (optional)</label><input id="contactPhone" name="phone" type="tel" class="focus-ring w-full rounded-xl border border-gray-200 px-4 py-3 outline-none" placeholder="Mobile number" /></div>
+              <div><label for="contactMessage" class="block font-bold text-sm mb-2">Aapka message *</label><textarea id="contactMessage" name="message" required rows="4" class="focus-ring w-full rounded-xl border border-gray-200 px-4 py-3 outline-none" placeholder="Aapko kis product ya service ke baare mein jaankari chahiye?"></textarea></div>
+              <button id="contactSubmit" type="submit" class="w-full rounded-xl bg-leaf text-white py-4 font-extrabold hover:bg-forest transition"><i class="fa-solid fa-paper-plane mr-2"></i> Message bhejein</button>
+              <p id="contactStatus" class="text-sm text-gray-500" role="status" aria-live="polite">Apni details bhar kar submit karein.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#102f28] text-white/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-5">
+      <a href="#home" class="flex items-center gap-3 text-white"><span class="w-10 h-10 rounded-xl bg-white/10 text-gold grid place-items-center"><i class="fa-solid fa-basket-shopping"></i></span><span class="font-extrabold">SHIBA GROCERY STORE</span></a>
+      <p class="text-sm text-center">© <span id="year"></span> SHIBA GROCERY STORE. All rights reserved.</p>
+      <div class="flex gap-4 text-xl"><a aria-label="WhatsApp" href="https://wa.me/918658050804" target="_blank" rel="noopener" class="hover:text-[#f2ca70]"><i class="fa-brands fa-whatsapp"></i></a><a aria-label="Call" href="tel:+918658050804" class="hover:text-[#f2ca70]"><i class="fa-solid fa-phone"></i></a><a aria-label="Email" href="mailto:shibaking031@gmail.com" class="hover:text-[#f2ca70]"><i class="fa-solid fa-envelope"></i></a></div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp button -->
+  <a href="https://wa.me/918658050804?text=Namaste%20SHIBA%20GROCERY%20STORE" target="_blank" rel="noopener" aria-label="WhatsApp par contact karein" class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white text-3xl grid place-items-center shadow-xl hover:scale-105 transition">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    // Automatically show current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Set the earliest booking date to today
+    const bookDate = document.getElementById('bookDate');
+    const today = new Date();
+    const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+    bookDate.min = localToday;
+
+    // Free booking/request form: opens WhatsApp with pre-filled details.
+    // This is a request, not an automatically confirmed appointment.
+    document.getElementById('bookingForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const data = new FormData(this);
+      const name = data.get('name').trim();
+      const phone = data.get('phone').trim();
+      const date = data.get('preferred_date') || 'Flexible';
+      const time = data.get('preferred_time') || 'Not specified';
+      const items = data.get('items').trim();
+      const message = `Namaste SHIBA GROCERY STORE!%0AFree booking / product request:%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0APreferred date: ${encodeURIComponent(date)}%0APreferred time: ${encodeURIComponent(time)}%0AProducts/request: ${encodeURIComponent(items)}%0A%0AKripya availability confirm karein.`;
+      document.getElementById('bookingStatus').textContent = 'WhatsApp khul raha hai. Request bhejne ke liye WhatsApp mein Send dabayein.';
+      window.open(`https://wa.me/918658050804?text=${message}`, '_blank', 'noopener');
+    });
+
+    // CONTACT FORM SETUP:
+    // Replace the placeholder below with your real Web3Forms access key.
+    // Never use your email password here. Get the access key at https://web3forms.com/
+    const WEB3FORMS_ACCESS_KEY = 'cc80df19-660a-4cbf-84df-1a5e9b280dd8';
+
+    document.getElementById('contactForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const status = document.getElementById('contactStatus');
+      const submit = document.getElementById('contactSubmit');
+
+      if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'cc80df19-660a-4cbf-84df-1a5e9b280dd8') {
+        status.textContent = 'Setup baaki hai: code mein WEB3FORMS_ACCESS_KEY ko apni asli Web3Forms key se replace karein.';
+        status.className = 'text-sm text-red-600';
+        return;
+      }
+
+      const formData = new FormData(this);
+      formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+      formData.append('subject', 'New message — SHIBA GROCERY STORE');
+      formData.append('from_name', 'SHIBA GROCERY STORE Website');
+      formData.append('to', 'shibaking031@gmail.com');
+
+      submit.disabled = true;
+      submit.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Bhej rahe hain...';
+      status.textContent = 'Aapka message bheja ja raha hai...';
+      status.className = 'text-sm text-gray-500';
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await response.json();
+        if (response.ok && result.success) {
+          status.textContent = 'Shukriya! Aapka message bhej diya gaya hai.';
+          status.className = 'text-sm text-green-700';
+          this.reset();
+        } else {
+          throw new Error(result.message || 'Message send nahi ho saka.');
+        }
+      } catch (error) {
+        status.textContent = 'Message abhi send nahi hua. Kripya key/setup check karein ya WhatsApp par message bhejein.';
+        status.className = 'text-sm text-red-600';
+      } finally {
+        submit.disabled = false;
+        submit.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i> Message bhejein';
+      }
+    });
+  </script>
+</body>
+</html>
